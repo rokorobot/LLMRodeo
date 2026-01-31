@@ -246,6 +246,9 @@ export default function Home() {
             <a href="https://github.com/rokorobotic" target="_blank" className="glitch-link">
               SOURCE_CODE
             </a>
+            <Link href="/contact" className="glitch-link">
+              CONTACT_US
+            </Link>
           </div>
           <div className="footer-col status-col">
             <h3>SYSTEM METRICS</h3>
