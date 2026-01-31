@@ -16,12 +16,34 @@ export default function ContactPage() {
         e.preventDefault();
         setStatus("sending");
 
-        // Simulate form submission (you'll need to implement actual backend)
-        setTimeout(() => {
-            setStatus("success");
-            setFormData({ name: "", email: "", subject: "", message: "" });
+        try {
+            // Using Formspree - Get your form ID from https://formspree.io/
+            // Replace YOUR_FORM_ID with your actual Formspree form ID
+            const response = await fetch("https://formspree.io/f/xdazvzzl", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    subject: formData.subject,
+                    message: formData.message,
+                }),
+            });
+
+            if (response.ok) {
+                setStatus("success");
+                setFormData({ name: "", email: "", subject: "", message: "" });
+                setTimeout(() => setStatus("idle"), 5000);
+            } else {
+                setStatus("error");
+                setTimeout(() => setStatus("idle"), 5000);
+            }
+        } catch (error) {
+            setStatus("error");
             setTimeout(() => setStatus("idle"), 5000);
-        }, 1000);
+        }
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -249,7 +271,7 @@ export default function ContactPage() {
                         <h3>OPEN AN ISSUE</h3>
                         <p>For bug reports, feature requests, or technical discussions, open an issue on our GitHub repository.</p>
                         <div className="technical-detail">
-                            <a href="https://github.com/rokorobotic" target="_blank" style={{ color: 'var(--accent-color)' }}>
+                            <a href="https://github.com/rokorobot/LLMRodeo" target="_blank" style={{ color: 'var(--accent-color)' }}>
                                 → GITHUB ISSUES
                             </a>
                         </div>

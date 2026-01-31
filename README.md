@@ -1,36 +1,105 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# LMMRodeo - TM4 Framework Website
 
-## Getting Started
+A governance framework for honest autonomous evolution.
 
-First, run the development server:
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
 
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build for production
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit `http://localhost:3000` to see the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📧 Setting Up the Contact Form
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The contact form uses **Formspree** for email functionality. To make it work:
 
-## Learn More
+### Step 1: Create a Formspree Account
+1. Go to [https://formspree.io/](https://formspree.io/)
+2. Sign up for a free account
+3. Create a new form
 
-To learn more about Next.js, take a look at the following resources:
+### Step 2: Get Your Form ID
+After creating a form, you'll get a form ID that looks like: `xyzabc123`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Step 3: Update the Contact Page
+Open `src/app/contact/page.tsx` and find line 22:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```typescript
+const response = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+```
 
-## Deploy on Vercel
+Replace `YOUR_FORM_ID` with your actual Formspree form ID:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```typescript
+const response = await fetch("https://formspree.io/f/xyzabc123", {
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Step 4: Update Email Address
+Also update the email address in:
+- `src/app/contact/page.tsx` (line 268) - Direct email link
+- Any other references to `contact@lmmrodeo.com`
+
+Replace with your actual email address.
+
+## 🎨 Features
+
+- **7 Pages**: Home, About, How It Works, Experiments, Publishing, Status, Contact
+- **Custom Favicon**: Red "LR" branding
+- **Dark Theme**: Industrial grey/red color scheme
+- **Responsive Design**: Works on all devices
+- **Contact Form**: Formspree integration ready
+
+## 📁 Project Structure
+
+```
+lmm-rodeo/
+├── src/
+│   └── app/
+│       ├── about/
+│       ├── contact/
+│       ├── experiments/
+│       ├── how-it-works/
+│       ├── publishing/
+│       ├── status/
+│       ├── globals.css
+│       ├── layout.tsx
+│       ├── page.tsx
+│       └── icon.tsx
+├── public/
+└── package.json
+```
+
+## 🌐 Deployment
+
+### Vercel (Recommended)
+1. Push to GitHub
+2. Import repository in Vercel
+3. Deploy automatically
+
+### Netlify
+1. Connect GitHub repository
+2. Build command: `npm run build`
+3. Publish directory: `.next`
+
+## 📝 License
+
+© 2026 TM4 // Thinking Machine 4.0
+
+## 🔗 Links
+
+- **GitHub**: https://github.com/rokorobot/LLMRodeo
+- **Live Site**: TBD
